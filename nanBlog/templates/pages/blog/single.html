@@ -10,8 +10,8 @@
                         <h1 class="text-white">
                             Blog Details
                         </h1>
-                        <p class="text-white link-nav"><a href="index.html">Home </a> <span class="lnr lnr-arrow-right"></span>
-                            <a href="blog-details.html">
+                        <p class="text-white link-nav"><a href="{% url 'blog:home' %}">Home </a> <span class="lnr lnr-arrow-right"></span>
+                            <a href="{% url 'blog:single' %}">
                                 Blog Details</a></p>
                     </div>
                 </div>
@@ -280,7 +280,7 @@
                                         <img class="img-fluid" src="/static/img/blog/r1.jpg" alt="">
                                     </div>
                                     <div class="popular-details">
-                                        <a href="blog-details.html">
+                                        <a href="{% url 'blog:single' %}">
                                             <h4>Space Final Frontier</h4>
                                         </a>
                                         <p class="text-uppercase">02 hours ago</p>
@@ -291,7 +291,7 @@
                                         <img class="img-fluid" src="/static/img/blog/r2.jpg" alt="">
                                     </div>
                                     <div class="popular-details">
-                                        <a href="blog-details.html">
+                                        <a href="{% url 'blog:single' %}">
                                             <h4>The Amazing Hubble</h4>
                                         </a>
                                         <p class="text-uppercase">02 hours ago</p>
@@ -302,7 +302,7 @@
                                         <img class="img-fluid" src="/static/img/blog/r3.jpg" alt="">
                                     </div>
                                     <div class="popular-details">
-                                        <a href="blog-details.html">
+                                        <a href="{% url 'blog:single' %}">
                                             <h4>Astronomy Astrology</h4>
                                         </a>
                                         <p class="text-uppercase">02 hours ago</p>
@@ -313,7 +313,7 @@
                                         <img class="img-fluid" src="/static/img/blog/r4.jpg" alt="">
                                     </div>
                                     <div class="popular-details">
-                                        <a href="blog-details.html">
+                                        <a href="{% url 'blog:single' %}">
                                             <h4>Asteroids telescope</h4>
                                         </a>
                                         <p class="text-uppercase">02 hours ago</p>
