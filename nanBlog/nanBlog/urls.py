@@ -17,13 +17,16 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls import url
 from django.conf import settings
-# from graphene_django.views import GraphQLView
+
 from django.conf.urls.static import static
 from filebrowser.sites import site
-# from .schema import schema
+from graphene_django.views import GraphQLView
+from .schema import schema
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("graphql", GraphQLView.as_view(graphiql=True , schema=schema)),
     path('', include('blogApp.urls')),
     path('comptes/', include('comptesApp.urls')),
     path('configuration/', include('configurationApp.urls')),
@@ -32,6 +35,7 @@ urlpatterns = [
     path('statistique/', include('statistiqueApp.urls')),
     path('apirest/', include('api_rest.urls')),
     # path('tinymce/', include('tinymce.urls')),
+    path('tinymce/', include('tinymce.urls')),
     # path('admin/filebrowser/', site.urls),
     # url(r'^accounts/', include('allauth.urls')),
     # path('api/', include('api.urls')),
