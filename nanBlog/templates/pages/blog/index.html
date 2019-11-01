@@ -210,7 +210,7 @@
 					<div class="single-widget search-widget">
 						<form class="example"  style="margin:auto;max-width:300px">
 							<input v-model="titre_search" type="text" placeholder="Search Posts" name="titre">
-							<button v-on:click="Search_article()"  type="button"><i class="fa fa-search"></i></button>
+							<button v-on:click.prevent="Search_article()"  type="button"><i class="fa fa-search"></i></button>
 						</form>
 					</div>
 

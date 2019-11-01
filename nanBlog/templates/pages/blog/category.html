@@ -103,9 +103,9 @@
 
 				<div class="col-lg-4 sidebar">
 					<div class="single-widget search-widget">
-						<form class="example" action="#" style="margin:auto;max-width:300px">
-							<input type="text" placeholder="Search Posts" name="search2">
-							<button type="submit"><i class="fa fa-search"></i></button>
+						<form class="example"  style="margin:auto;max-width:300px">
+							<input v-model="titre_search" type="text" placeholder="Search Posts" name="titre">
+							<button v-on:click.prevent="Search_article()"  type="button"><i class="fa fa-search"></i></button>
 						</form>
 					</div>
 
@@ -227,7 +227,8 @@ var app = new Vue({
         loader: true,
         content:false,
 		titre: "",
-        base_url:"",
+		base_url:"",
+		titre_search: '',
         data_all_category:[],
         data_articles:""
     },
@@ -238,6 +239,57 @@ var app = new Vue({
         this.getdata()
     },
     methods: {
+		Search_article: function(){
+            console.log('data getting')
+            axios.defaults.xsrfCookieName = 'csrftoken'
+			axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+			this.content = false
+            axios({
+                url: this.base_url + 'graphql',
+                method: 'post',
+                data: {
+                    query: `
+                    query{
+						single: allCategories(titre: "${ this.titre }", first: 1) {
+							edges {
+								node {
+									titre
+									articles (titre_Icontains: "${ this.titre_search }"){
+										edges {
+											node {
+												titre
+												titreSlug
+												description
+												photo
+												dateAdd
+												description
+												commentaires {
+													totalCount
+												}
+												likes {
+													totalCount
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+                    `
+                }
+            })
+            .then(response => {
+
+				result = response.data.data
+				this.data_articles = result.search.edges
+				this.content=true
+                console.log(result)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        },
         getdata: function(){
             console.log('data getting')
             axios.defaults.xsrfCookieName = 'csrftoken'
