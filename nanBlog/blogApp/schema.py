@@ -72,12 +72,25 @@ class CommentaireNode(DjangoObjectType):
         filter_fields = {
             'contenu': ['exact', 'icontains', 'istartswith'],
             'article_id':['exact',],
+            'username':['exact',],
           
         }
         interfaces = (relay.Node, )
         connection_class = ExtendedConnection
 
 
+class ReplyNode(DjangoObjectType):
+    class Meta:
+        model = Reply
+        # Allow for some more advanced filtering here
+        filter_fields = {
+            'contenu': ['exact', 'icontains', 'istartswith'],
+            'commentaire_id':['exact',],
+            'username':['exact',],
+          
+        }
+        interfaces = (relay.Node, )
+        connection_class = ExtendedConnection
 class LikeNode(DjangoObjectType):
     class Meta:
         model = Like
@@ -102,3 +115,6 @@ class Query(ObjectType):
 
     Like = relay.Node.Field(LikeNode)
     all_Likes = DjangoFilterConnectionField(LikeNode)
+    
+    Reply = relay.Node.Field(ReplyNode)
+    all_Reply = DjangoFilterConnectionField(ReplyNode)

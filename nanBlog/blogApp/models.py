@@ -98,7 +98,7 @@ class Article(models.Model):
     
 class Commentaire(Timemodels):
     article_id =  models.ForeignKey(Article,on_delete=models.CASCADE, related_name="commentaires")
-    username =  models.ForeignKey(User,on_delete=models.CASCADE)
+    username =  models.ForeignKey(Profile,on_delete=models.CASCADE)
     contenu =  models.TextField(null=True)
 
     class Meta:
@@ -110,7 +110,7 @@ class Commentaire(Timemodels):
     
 class Reply(Timemodels):
     commentaire_id =  models.ForeignKey(Commentaire,on_delete=models.CASCADE, related_name="reponses")
-    username =  models.ForeignKey(User,on_delete=models.CASCADE)
+    username =  models.ForeignKey(Profile, on_delete=models.CASCADE)
     contenu =  models.TextField(null=True)
 
     class Meta:
