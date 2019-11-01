@@ -17,3 +17,10 @@ class Visitor_Infos_user(models.Model): # On va utiliser cette table pour faire 
     page_visited = models.TextField()
     reseau_mobile = models.CharField(max_length=50)
     status =  models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Visitor_Infos_user'
+        verbose_name_plural = 'Visitor_Infos_users'
+   
+    def __str__(self):
+        return self.ip
