@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'django_filters',
     'graphene_django',
+    'api_rest.apps.ApiRestConfig',
 ]
 
 MIDDLEWARE = [
