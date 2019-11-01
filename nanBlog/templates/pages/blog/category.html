@@ -24,20 +24,19 @@
 			<div class="row">
 				<div class="col-lg-8 post-list">
 					<!-- Start Post Area -->
-					<section class="post-area">
+					<section v-if="content" class="post-area">
 						<div class="row">
-							<div class="col-lg-6 col-md-6">
+							<div v-for="article in data_articles.node.articles.edges" class="col-lg-6 col-md-6">
 								<div class="single-post-item short">
 									<figure>
-										<img class="post-img img-fluid" src="/static/img/category/c1.jpg" alt="">
+										<img class="post-img img-fluid" :src=`${base_url}`+`media/`+`${article.node.photo}` alt="">
 									</figure>
 									<h3>
-										<a href="{% url 'blog:single' %}">It’s hurricane season but we are
-											visiting hilton head island</a>
+										<a :href=`${base_url}`+`details/`+`${article.node.titreSlug}`>${ article.node.titre }</a>
 									</h3>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
 										dolore magna aliqua.</p>
-									<a href="{% url 'blog:single' %}" class="primary-btn text-uppercase mt-15">continue Reading</a>
+									<a :href=`${base_url}`+`details/`+`${article.node.titreSlug}` class="primary-btn text-uppercase mt-15">continue Reading</a>
 									<div class="post-box">
 										<div class="d-flex">
 											<div>
@@ -52,330 +51,15 @@
 												<div class="meta-details">
 													<ul>
 														<li>
-															<a href="#">
+															<a :href=`${base_url}`+`details/`+`${article.node.titreSlug}`>
 																<span class="lnr lnr-calendar-full"></span>
-																13th Oct, 2018
+																${ article.node.dateAdd }
 															</a>
 														</li>
 														<li>
 															<a href="#">
 																<span class="lnr lnr-bubble"></span>
-																03
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-6 col-md-6">
-								<div class="single-post-item short">
-									<figure>
-										<img class="post-img img-fluid" src="/static/img/category/c2.jpg" alt="">
-									</figure>
-									<h3>
-										<a href="{% url 'blog:single' %}">It’s hurricane season but we are
-											visiting hilton head island</a>
-									</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua.</p>
-									<a href="{% url 'blog:single' %}" class="primary-btn text-uppercase mt-15">continue Reading</a>
-									<div class="post-box">
-										<div class="d-flex">
-											<div>
-												<a href="#">
-													<img src="/static/img/author/a1.png" alt="">
-												</a>
-											</div>
-											<div class="post-meta">
-												<div class="meta-head">
-													<a href="#">Marvel Maison</a>
-												</div>
-												<div class="meta-details">
-													<ul>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-calendar-full"></span>
-																13th Oct, 2018
-															</a>
-														</li>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-bubble"></span>
-																03
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-6 col-md-6">
-								<div class="single-post-item short">
-									<figure>
-										<img class="post-img img-fluid" src="/static/img/category/c3.jpg" alt="">
-									</figure>
-									<h3>
-										<a href="{% url 'blog:single' %}">It’s hurricane season but we are
-											visiting hilton head island</a>
-									</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua.</p>
-									<a href="{% url 'blog:single' %}" class="primary-btn text-uppercase mt-15">continue Reading</a>
-									<div class="post-box">
-										<div class="d-flex">
-											<div>
-												<a href="#">
-													<img src="/static/img/author/a1.png" alt="">
-												</a>
-											</div>
-											<div class="post-meta">
-												<div class="meta-head">
-													<a href="#">Marvel Maison</a>
-												</div>
-												<div class="meta-details">
-													<ul>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-calendar-full"></span>
-																13th Oct, 2018
-															</a>
-														</li>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-bubble"></span>
-																03
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-6 col-md-6">
-								<div class="single-post-item short">
-									<figure>
-										<img class="post-img img-fluid" src="/static/img/category/c4.jpg" alt="">
-									</figure>
-									<h3>
-										<a href="{% url 'blog:single' %}">It’s hurricane season but we are
-											visiting hilton head island</a>
-									</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua.</p>
-									<a href="{% url 'blog:single' %}" class="primary-btn text-uppercase mt-15">continue Reading</a>
-									<div class="post-box">
-										<div class="d-flex">
-											<div>
-												<a href="#">
-													<img src="/static/img/author/a1.png" alt="">
-												</a>
-											</div>
-											<div class="post-meta">
-												<div class="meta-head">
-													<a href="#">Marvel Maison</a>
-												</div>
-												<div class="meta-details">
-													<ul>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-calendar-full"></span>
-																13th Oct, 2018
-															</a>
-														</li>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-bubble"></span>
-																03
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-6 col-md-6">
-								<div class="single-post-item short">
-									<figure>
-										<img class="post-img img-fluid" src="/static/img/category/c5.jpg" alt="">
-									</figure>
-									<h3>
-										<a href="{% url 'blog:single' %}">It’s hurricane season but we are
-											visiting hilton head island</a>
-									</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua.</p>
-									<a href="{% url 'blog:single' %}" class="primary-btn text-uppercase mt-15">continue Reading</a>
-									<div class="post-box">
-										<div class="d-flex">
-											<div>
-												<a href="#">
-													<img src="/static/img/author/a1.png" alt="">
-												</a>
-											</div>
-											<div class="post-meta">
-												<div class="meta-head">
-													<a href="#">Marvel Maison</a>
-												</div>
-												<div class="meta-details">
-													<ul>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-calendar-full"></span>
-																13th Oct, 2018
-															</a>
-														</li>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-bubble"></span>
-																03
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-6 col-md-6">
-								<div class="single-post-item short">
-									<figure>
-										<img class="post-img img-fluid" src="/static/img/category/c6.jpg" alt="">
-									</figure>
-									<h3>
-										<a href="{% url 'blog:single' %}">It’s hurricane season but we are
-											visiting hilton head island</a>
-									</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua.</p>
-									<a href="{% url 'blog:single' %}" class="primary-btn text-uppercase mt-15">continue Reading</a>
-									<div class="post-box">
-										<div class="d-flex">
-											<div>
-												<a href="#">
-													<img src="/static/img/author/a1.png" alt="">
-												</a>
-											</div>
-											<div class="post-meta">
-												<div class="meta-head">
-													<a href="#">Marvel Maison</a>
-												</div>
-												<div class="meta-details">
-													<ul>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-calendar-full"></span>
-																13th Oct, 2018
-															</a>
-														</li>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-bubble"></span>
-																03
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-6 col-md-6">
-								<div class="single-post-item short">
-									<figure>
-										<img class="post-img img-fluid" src="/static/img/category/c7.jpg" alt="">
-									</figure>
-									<h3>
-										<a href="{% url 'blog:single' %}">It’s hurricane season but we are
-											visiting hilton head island</a>
-									</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua.</p>
-									<a href="{% url 'blog:single' %}" class="primary-btn text-uppercase mt-15">continue Reading</a>
-									<div class="post-box">
-										<div class="d-flex">
-											<div>
-												<a href="#">
-													<img src="/static/img/author/a1.png" alt="">
-												</a>
-											</div>
-											<div class="post-meta">
-												<div class="meta-head">
-													<a href="#">Marvel Maison</a>
-												</div>
-												<div class="meta-details">
-													<ul>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-calendar-full"></span>
-																13th Oct, 2018
-															</a>
-														</li>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-bubble"></span>
-																03
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-6 col-md-6">
-								<div class="single-post-item short">
-									<figure>
-										<img class="post-img img-fluid" src="/static/img/category/c8.jpg" alt="">
-									</figure>
-									<h3>
-										<a href="{% url 'blog:single' %}">It’s hurricane season but we are
-											visiting hilton head island</a>
-									</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua.</p>
-									<a href="{% url 'blog:single' %}" class="primary-btn text-uppercase mt-15">continue Reading</a>
-									<div class="post-box">
-										<div class="d-flex">
-											<div>
-												<a href="#">
-													<img src="/static/img/author/a1.png" alt="">
-												</a>
-											</div>
-											<div class="post-meta">
-												<div class="meta-head">
-													<a href="#">Marvel Maison</a>
-												</div>
-												<div class="meta-details">
-													<ul>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-calendar-full"></span>
-																13th Oct, 2018
-															</a>
-														</li>
-														<li>
-															<a href="#">
-																<span class="lnr lnr-bubble"></span>
-																03
+																${ article.node.commentaires.totalCount }
 															</a>
 														</li>
 													</ul>
@@ -498,26 +182,8 @@
 					<div class="single-widget category-widget">
 						<h4 class="title">Post Categories</h4>
 						<ul>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Techlology</p> <span>37</span>
-								</a></li>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Lifestyle</p> <span>24</span>
-								</a></li>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Fashion</p> <span>59</span>
-								</a></li>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Art</p> <span>29</span>
-								</a></li>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Food</p> <span>15</span>
-								</a></li>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Architecture</p> <span>09</span>
-								</a></li>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Adventure</p> <span>44</span>
+							<li v-for="cat in data_all_category"><a :href=`${base_url}`+`category/`+`${cat.node.titre}` class="justify-content-between align-items-center d-flex">
+									<p>${ cat.node.titre }</p> <span>${ cat.node.articles.totalCount }</span>
 								</a></li>
 						</ul>
 					</div>
@@ -552,3 +218,94 @@
 
 	<!-- start footer Area -->
 {% endblock content %}
+
+{% block vue %}
+<script>
+var app = new Vue({
+    el: '#app',
+    data: {
+        loader: true,
+        content:false,
+		titre: "",
+        base_url:"",
+        data_all_category:[],
+        data_articles:""
+    },
+    delimiters: ["${","}"],
+    mounted(){
+		this.base_url = window.location.protocol + '//' + window.location.host + '/'
+		this.titre = "{{ titre }}"
+        this.getdata()
+    },
+    methods: {
+        getdata: function(){
+            console.log('data getting')
+            axios.defaults.xsrfCookieName = 'csrftoken'
+            axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+            
+
+            axios({
+                url: this.base_url + 'graphql',
+                method: 'post',
+                data: {
+                    query: `
+                    query{
+						single:allCategories(titre: "${ this.titre }", first: 1) {
+							edges {
+							node {
+								titre
+								articles {
+								edges {
+									node {
+									titre
+									titreSlug
+									description
+									photo
+									dateAdd
+									description
+									commentaires {
+										totalCount
+									}
+									likes {
+										totalCount
+									}
+									}
+								}
+								}
+							}
+							}
+						}
+						allCategories {
+							edges {
+							node {
+								id
+								titre
+								image
+								articles {
+								totalCount
+								}
+							}
+							}
+						}
+						}
+                    `
+                }
+            })
+            .then(response => {
+
+                result = response.data.data
+                this.data_all_category = result.allCategories.edges
+				this.data_articles = result.single.edges[0]
+				this.content=true
+                console.log(this.data_all_category)
+				console.log(this.data_articles)
+				console.log("fin")
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        },
+    }
+})
+</script>
+{% endblock vue %}

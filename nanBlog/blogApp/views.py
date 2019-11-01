@@ -9,27 +9,48 @@ def home(request):
 
     return render(request, 'pages/blog/index.html',data)
 
-def single(request):
-     
+def detail(request , titre):
     
-    data={}
-
-    return render(request, 'pages/blog/single.html',data)
-
-
-
-def archive(request):
-     
+    nbr_vue = Visitor_Infos_user.objects.filter(page_visited="/details/{}".format(titre)).count()
+    print(nbr_vue)
+    # lien = Link.objects.filter(status=True).order_by('-date_add')
+    # image = Background.objects.filter(status=True).order_by('-date_add')
+    maxim = Article.objects.filter(status=True).order_by('-nb_like') 
+ 
     
-    data={}
 
-    return render(request, 'pages/blog/archive.html',data)
+    archive = Categorie.objects.filter(status=True).order_by('-date_add') 
+    alltag = Tag.objects.filter(status=True)
+    article = Article.objects.get(titre_slug=titre)
+    categorie = Categorie.objects.filter(status=True).order_by('-date_add')
+    tag = article.tag_name.all()
+    comment = Commentaire.objects.filter(article_id = article).order_by('-date_add')
+    comment7 = Commentaire.objects.filter(article_id = article).order_by('-date_add')[5::]
+   
 
-def category(request):
-     
+    data={
+        "nbr_vue":nbr_vue,
     
-    data={}
+        
+    
+        'verif':len(comment7),
+        # 'lien':lien,
+        # 'image':image,
+        'alltag':alltag,
+        'archive':archive,
+        'tag':tag,
+        'categorie':categorie,
+        'comment':comment,
+        'article':article,
+        'maxim':maxim,
+    }
+    return render(request, 'pages/blog/blog-detail.html',data)
 
+def categorie(request, titre):
+    
+    data={
+        'titre': titre
+    }
     return render(request, 'pages/blog/category.html',data)
 
 def dashbord(request):
