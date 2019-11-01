@@ -79,7 +79,7 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         u3 = uuid.uuid3(uuid.NAMESPACE_DNS,  str(self.pk))
-        self.titre_slug ='@'+ slugify(self.titre + str(u3) + str(self.pk)  + self.nom.username )
+        self.titre_slug ='@'+ slugify(self.titre + str(u3) + str(self.pk)  + self.auteur.username )
         self.nb_com = self.nbr_comment
         self.nb_like=self.nbr_like
         self.nb_re_commentaitre=self.nb_reply
