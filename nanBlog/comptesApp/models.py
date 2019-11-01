@@ -14,6 +14,7 @@ class Profile(models.Model):
     contacts = models.CharField(max_length=30, null=True)
     image = models.ImageField(upload_to='profile/', default='useravatar.png')
     birth_date = models.DateField(null=True)
+    membre = models.BooleanField(default="False")
 
     # Initialisation a la creation
     

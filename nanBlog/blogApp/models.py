@@ -7,7 +7,7 @@ from django.utils.text import slugify
 from datetime import datetime
 from statistiqueApp.models import Visitor_Infos_user
 
-from comptesApp.models import Profile
+# from comptesApp.models import *
 # Create your models here.
 #------------------------ blog_app_model --------------#
 class Timemodels(models.Model):
@@ -97,7 +97,7 @@ class Article(models.Model):
     
 class Commentaire(Timemodels):
     article_id =  models.ForeignKey(Article,on_delete=models.CASCADE, related_name="commentaires")
-    username =  models.ForeignKey(Profile,on_delete=models.CASCADE,related_name="re_user")
+    username =  models.ForeignKey(User,on_delete=models.CASCADE,related_name="re_user")
     contenu =  models.TextField(null=True)
 
     class Meta:
@@ -109,7 +109,7 @@ class Commentaire(Timemodels):
 class Reply(Timemodels):
     commentaire_id =  models.ForeignKey(Commentaire,on_delete=models.CASCADE, related_name="reponses")
     article_id =  models.ForeignKey(Article,on_delete=models.CASCADE, related_name="re_commentaires")
-    username =  models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="userreply")
+    username =  models.ForeignKey(User, on_delete=models.CASCADE, related_name="userreply")
     contenu =  models.TextField(null=True)
 
     class Meta:
