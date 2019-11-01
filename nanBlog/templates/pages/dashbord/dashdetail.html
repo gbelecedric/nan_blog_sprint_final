@@ -1,0 +1,195 @@
+{% extends 'bases/base_dashbord.html' %}
+
+{% block dashbord %}
+
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+            <div class="title_left">
+                <h3>Project Detail <small> design</small></h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="button">Go!</button>
+                    </span>
+                </div>
+                </div>
+            </div>
+            </div>
+            
+            <div class="clearfix"></div>
+
+            <div class="row">
+            <div class="col-md-8">
+                <div class="x_panel">
+                <div class="x_title">
+                    <h2>Statistiques</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                        </div>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+
+                    <ul class="stats-overview">
+                        <li style="    width: 24% !important;">
+                        <span style="font-size: 26px;"> <i class="fa fa-comments-o"></i> </span>
+                        <span class="value text-success">2300 </span>
+                        </li>
+                        <li style="    width: 24% !important;">
+                        <span style="font-size: 26px;"> <i class="fa fa-eye"></i> </span>
+                        <span class="value text-success">2300 </span>
+                        </li>
+                        <li style="    width: 24% !important;">
+                        <span style="font-size: 26px;"> <i class="fa fa-heart"></i> </span>
+                        <span class="value text-success">2300 </span>
+                        </li>
+                        <li style="    width: 24% !important;">
+                        <span style="font-size: 26px;"> <i class="glyphicon glyphicon-ban-circle"></i> </span>
+                        <span class="value text-success">2300 </span>
+                        </li>
+                    </ul>
+                    <br />
+
+                    <div id="mainb" style="height:350px;"></div>
+
+                    <div>
+                    </div>
+                    </div>
+
+                </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="x_panel">
+                <div class="x_title">
+                    <h2>Post</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                        </div>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="panel-body" >
+                    <h3 class="green"> Space Final Frontier</h3>
+
+                    <div class="project_detail">
+
+                        <img src="/static/dashbord/images/media.jpg" alt="Avatar" style="width: 100%">
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-9 col-sm-9 col-xs-12">
+                <div class="x_panel">
+                <div class="x_title">
+                    <h2>Commentaire du post</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                        </div>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <!-- end of user messages -->
+                    <ul class="messages">
+                    <li>
+                        <img src="/static/dashbord/images/img.jpg" class="avatar" alt="Avatar">
+                        <div class="message_date">
+                        <h3 class="date text-info">24</h3>
+                        <p class="month">May</p>
+                        </div>
+                        <div class="message_wrapper">
+                        <h4 class="heading">Desmond Davison</h4>
+                        <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                        <br />
+                        <p class="url">
+                            <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                            <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
+                        </p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="/static/dashbord/images/img.jpg" class="avatar" alt="Avatar">
+                        <div class="message_date">
+                        <h3 class="date text-error">21</h3>
+                        <p class="month">May</p>
+                        </div>
+                        <div class="message_wrapper">
+                        <h4 class="heading">Brian Michaels</h4>
+                        <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                        <br />
+                        <p class="url">
+                            <span class="fs1" aria-hidden="true" data-icon=""></span>
+                            <a href="#" data-original-title="">Download</a>
+                        </p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="/static/dashbord/images/img.jpg" class="avatar" alt="Avatar">
+                        <div class="message_date">
+                        <h3 class="date text-info">24</h3>
+                        <p class="month">May</p>
+                        </div>
+                        <div class="message_wrapper">
+                        <h4 class="heading">Desmond Davison</h4>
+                        <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                        <br />
+                        <p class="url">
+                            <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                            <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
+                        </p>
+                        </div>
+                    </li>
+                    </ul>
+                    <!-- end of user messages -->
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+
+{% endblock dashbord %}
