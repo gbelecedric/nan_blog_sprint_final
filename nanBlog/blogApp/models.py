@@ -7,7 +7,7 @@ from django.utils.text import slugify
 from datetime import datetime
 from statistiqueApp.models import Visitor_Infos_user
 
-
+from comptesApp.models import Profile
 # Create your models here.
 #------------------------ blog_app_model --------------#
 class Timemodels(models.Model):
