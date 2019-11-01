@@ -124,6 +124,7 @@ class ReplyAdmin(admin.ModelAdmin):
         'date_update',
         'status',
         'commentaire_id',
+        'article_id',
         'username',
         'contenu',
     )
@@ -132,12 +133,14 @@ class ReplyAdmin(admin.ModelAdmin):
         'date_update',
         'status',
         'commentaire_id',
+        'article_id',
         'username',
         'id',
         'date_add',
         'date_update',
         'status',
         'commentaire_id',
+        'article_id',
         'username',
         'contenu',
     )

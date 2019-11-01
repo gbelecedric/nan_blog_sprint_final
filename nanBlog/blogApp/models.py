@@ -48,9 +48,9 @@ class Article(models.Model):
     photo = models.ImageField(upload_to ='article')
     tag_name = models.ManyToManyField(Tag, related_name="tag_article")
     auteur =  models.ForeignKey(User,on_delete=models.CASCADE, null=True)
-    nb_com = models.PositiveIntegerField()
-    nb_like = models.PositiveIntegerField()
-    nb_re_commentaitre = models.PositiveIntegerField()
+    nb_com = models.PositiveIntegerField(editable=False,)
+    nb_like = models.PositiveIntegerField(editable=False,)
+    nb_re_commentaitre = models.PositiveIntegerField(editable=False,)
     date_add =  models.DateTimeField(auto_now_add=True)
     date_update =  models.DateTimeField(auto_now=True)
     status =  models.BooleanField(default=False)
@@ -109,6 +109,7 @@ class Commentaire(Timemodels):
     
 class Reply(Timemodels):
     commentaire_id =  models.ForeignKey(Commentaire,on_delete=models.CASCADE, related_name="reponses")
+    article_id =  models.ForeignKey(Article,on_delete=models.CASCADE, related_name="re_commentaires")
     username =  models.ForeignKey(Profile, on_delete=models.CASCADE)
     contenu =  models.TextField(null=True)
 
