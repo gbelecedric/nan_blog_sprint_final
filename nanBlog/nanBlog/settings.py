@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'blogApp.apps.BlogappConfig',
     'comptesApp.apps.ComptesappConfig',
     'configurationApp.apps.ConfigurationappConfig',
@@ -54,6 +55,18 @@ INSTALLED_APPS = [
     'django_filters',
     'graphene_django',
     'api_rest.apps.ApiRestConfig',
+
+
+    # allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # provider  
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.github',
+
 ]
 
 MIDDLEWARE = [
@@ -181,3 +194,10 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '../media_cdn')
 STATIC_ROOT = os.path.join(BASE_DIR, '../static_cdn') 
+
+
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL ="comptes:profil_util"
+
