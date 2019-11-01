@@ -16,3 +16,4 @@ graphene-django
 django-filter
 drf-dynamic-fields
 djangorestframework
+psycopg2
