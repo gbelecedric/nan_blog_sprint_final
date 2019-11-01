@@ -48,10 +48,13 @@ class Article(models.Model):
     photo = models.ImageField(upload_to ='article')
     tag_name = models.ManyToManyField(Tag, related_name="tag_article")
     auteur =  models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    nb_com = models.PositiveIntegerField()
+    nb_like = models.PositiveIntegerField()
+    nb_re_commentaitre = models.PositiveIntegerField()
     date_add =  models.DateTimeField(auto_now_add=True)
     date_update =  models.DateTimeField(auto_now=True)
     status =  models.BooleanField(default=False)
-
+  
     @property
     def nbr_like(self):
         n = self.likes.all().count()
@@ -60,7 +63,13 @@ class Article(models.Model):
     @property
     def nb_com(self):
         n = self.commentaires.all().count()
-        n += self.re_commentaires.all().count()
+   
+        return n
+    
+    @property
+    def nb_reply(self):
+  
+        n = self.re_commentaires.all().count()
         return n
 
     @property
@@ -74,6 +83,7 @@ class Article(models.Model):
         self.titre_slug ='@'+ slugify(self.titre + str(u3) + str(self.pk)  + self.nom.username )
         self.nb_com = self.nbr_comment
         self.nb_like=self.nbr_like
+        self.nb_re_commentaitre=self.nb_reply
 
         super(Article, self).save(*args, **kwargs)
 
