@@ -61,14 +61,13 @@ class Article(models.Model):
         return n
 
     @property
-    def nb_com(self):
+    def nbr_comment(self):
         n = self.commentaires.all().count()
    
         return n
     
     @property
     def nb_reply(self):
-  
         n = self.re_commentaires.all().count()
         return n
 

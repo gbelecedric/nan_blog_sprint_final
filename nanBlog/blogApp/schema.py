@@ -48,7 +48,6 @@ class ArticleNode(DjangoObjectType):
     class Meta:
         model = Article
         filter_fields = {
-        
             'titre': ['exact', 'icontains', 'istartswith'],
             'commentaires':['exact'],
             'categorie_id': ['exact',],
