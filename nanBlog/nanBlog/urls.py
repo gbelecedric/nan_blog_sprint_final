@@ -14,8 +14,29 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+from django.conf.urls import url
+from django.conf import settings
+# from graphene_django.views import GraphQLView
+from django.conf.urls.static import static
+from filebrowser.sites import site
+# from .schema import schema
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('blogApp.urls')),
+    path('comptes/', include('comptesApp.urls')),
+    path('configuration/', include('configurationApp.urls')),
+    path('contact/', include('contactApp.urls')),
+    path('site/', include('siteApp.urls')),
+    path('statistique/', include('statistiqueApp.urls')),
+    # path('tinymce/', include('tinymce.urls')),
+    # path('admin/filebrowser/', site.urls),
+    # url(r'^accounts/', include('allauth.urls')),
+    # path('api/', include('api.urls')),
+    # path("graphql", GraphQLView.as_view(graphiql=True, schema=schema)),
+
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
