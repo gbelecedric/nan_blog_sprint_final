@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from django.contrib import admin
 
 # Register your models here.
@@ -92,12 +90,12 @@ class ReplyAdmin(admin.ModelAdmin):
         'date_update',
         'status',
         'commentaire_id',
-        #'article',
+        'article_id',
         'username',
     )
     list_filter = (
         'commentaire_id',
-        #'article',
+        'article_id',
         'username',
         'date_add',
         'date_update',
@@ -171,4 +169,3 @@ _register(models.Reply, ReplyAdmin)
 _register(models.Like, LikeAdmin)
 _register(models.search, searchAdmin)
 _register(models.Vue, VueAdmin)
->>>>>>> c1d2415ac056d7d971c894ac0ee5bbf10739814c
