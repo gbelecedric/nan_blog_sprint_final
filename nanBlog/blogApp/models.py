@@ -110,7 +110,6 @@ class Commentaire(Timemodels):
     
 class Reply(Timemodels):
     commentaire_id =  models.ForeignKey(Commentaire,on_delete=models.CASCADE, related_name="reponses")
-    article = models.ForeignKey(Article,on_delete=models.CASCADE, related_name="re_commentaires")
     username =  models.ForeignKey(User,on_delete=models.CASCADE)
     contenu =  models.TextField(null=True)
 
@@ -120,7 +119,7 @@ class Reply(Timemodels):
 
 
 class Like(Timemodels):
-    person =  models.ForeignKey(User,on_delete=models.CASCADE, related_name="likes")
+    person =  models.ForeignKey(User,on_delete=models.CASCADE, related_name="likes_visiteur")
     article = models.ForeignKey(Article,on_delete=models.CASCADE, related_name="likes")
 
     class Meta:
@@ -142,7 +141,7 @@ class Vue(Timemodels): # Pour faciliter les requêtes on va directement lié Vis
     """Model definition for Vue."""
 
     # TODO: Define fields here
-    article = models.ForeignKey(Article,on_delete=models.CASCADE, related_name="vues")
+    article = models.ForeignKey(Article,on_delete=models.CASCADE, related_name="vues_articles")
     visiteur = models.ForeignKey(Visitor_Infos_user, on_delete=models.CASCADE, related_name='vues')
 
 
