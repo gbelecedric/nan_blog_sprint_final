@@ -97,20 +97,19 @@ class Article(models.Model):
     
 class Commentaire(Timemodels):
     article_id =  models.ForeignKey(Article,on_delete=models.CASCADE, related_name="commentaires")
-    username =  models.ForeignKey(Profile,on_delete=models.CASCADE)
+    username =  models.ForeignKey(Profile,on_delete=models.CASCADE,related_name="re_user")
     contenu =  models.TextField(null=True)
 
     class Meta:
         verbose_name = 'Commentaire'
         verbose_name_plural = 'Commentaire des postes'
     
-    def __str__(self):
-        return self.username.username
+
     
 class Reply(Timemodels):
     commentaire_id =  models.ForeignKey(Commentaire,on_delete=models.CASCADE, related_name="reponses")
     article_id =  models.ForeignKey(Article,on_delete=models.CASCADE, related_name="re_commentaires")
-    username =  models.ForeignKey(Profile, on_delete=models.CASCADE)
+    username =  models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="userreply")
     contenu =  models.TextField(null=True)
 
     class Meta:
