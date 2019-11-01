@@ -30,6 +30,7 @@ urlpatterns = [
     path('contact/', include('contactApp.urls')),
     path('site/', include('siteApp.urls')),
     path('statistique/', include('statistiqueApp.urls')),
+    path('apirest/', include('api_rest.urls')),
     # path('tinymce/', include('tinymce.urls')),
     # path('admin/filebrowser/', site.urls),
     # url(r'^accounts/', include('allauth.urls')),
