@@ -90,12 +90,12 @@ class ReplyAdmin(admin.ModelAdmin):
         'date_update',
         'status',
         'commentaire_id',
-        'article',
+        #'article',
         'username',
     )
     list_filter = (
         'commentaire_id',
-        'article',
+        #'article',
         'username',
         'date_add',
         'date_update',
