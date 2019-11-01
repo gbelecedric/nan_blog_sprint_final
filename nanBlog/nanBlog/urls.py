@@ -34,9 +34,9 @@ urlpatterns = [
     path('site/', include('siteApp.urls')),
     path('statistique/', include('statistiqueApp.urls')),
     path('apirest/', include('api_rest.urls')),
-    # path('tinymce/', include('tinymce.urls')),
+    # Tinymce
     path('tinymce/', include('tinymce.urls')),
-    # path('admin/filebrowser/', site.urls),
+    path('admin/filebrowser/', site.urls),
     # url(r'^accounts/', include('allauth.urls')),
     # path('api/', include('api.urls')),
     # path("graphql", GraphQLView.as_view(graphiql=True, schema=schema)),

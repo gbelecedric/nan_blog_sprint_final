@@ -42,10 +42,6 @@
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li class="menu-active"><a href="{% url 'blog:home' %}">Home</a></li>
-						{% if user.is_authenticated %}
-						<li><a href="{% url 'blog:dashbord' %}">Dashborad</a></li>
-						<li><a href="{% url 'comptes:profil_util' %}">Profile</a></li>
-						{% endif %}
 					</ul>
 				</nav>
 			</div>

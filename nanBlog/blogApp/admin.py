@@ -1,3 +1,6 @@
+from django.contrib import admin
+
+# Register your models here.
 # vim: set fileencoding=utf-8 :
 from django.contrib import admin
 
