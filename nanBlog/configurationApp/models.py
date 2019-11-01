@@ -19,6 +19,7 @@ class Link(Timemodels):
   
  
 class Info(Timemodels):
-    contact = models.IntegerField()
+    contact = models.PositiveIntegerField()
     adrresse = models.CharField(max_length=250)
-    maps = models.CharField(max_length=200)
+    longitude =models.PositiveIntegerField()
+    latitude = models.PositiveIntegerField()
