@@ -7,7 +7,7 @@ from django.utils.text import slugify
 from datetime import datetime
 from statistiqueApp.models import Visitor_Infos_user
 
-from comptesApp.models import *
+# from comptesApp.models import *
 # Create your models here.
 #------------------------ blog_app_model --------------#
 class Timemodels(models.Model):
@@ -28,7 +28,7 @@ class Tag(Timemodels):
 class Categorie(Timemodels):
     titre =  models.CharField(max_length=255)
     image = models.ImageField(upload_to='categorie',)
-    nom =  models.ForeignKey(Profile,on_delete=models.CASCADE, related_name='ctegorieuser')
+    nom =  models.ForeignKey(User,on_delete=models.CASCADE, related_name='ctegorieuser')
 
     class Meta:
         verbose_name = 'Categorie'
@@ -47,7 +47,7 @@ class Article(models.Model):
     contenu =  HTMLField('article_description', null=True)
     photo = models.ImageField(upload_to ='article')
     tag_name = models.ManyToManyField(Tag, related_name="tag_article")
-    auteur =  models.ForeignKey(Profile,on_delete=models.CASCADE, null=True)
+    auteur =  models.ForeignKey(User,on_delete=models.CASCADE, null=True)
     nb_com = models.PositiveIntegerField(editable=False,)
     nb_like = models.PositiveIntegerField(editable=False,)
     nb_re_commentaitre = models.PositiveIntegerField(editable=False,)
@@ -79,7 +79,7 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         u3 = uuid.uuid3(uuid.NAMESPACE_DNS,  str(self.pk))
-        self.titre_slug ='@'+ slugify(self.titre + str(u3) + str(self.pk)  + self.auteur.Profilename )
+        self.titre_slug ='@'+ slugify(self.titre + str(u3) + str(self.pk)  + self.auteur.username )
         self.nb_com = self.nbr_comment
         self.nb_like=self.nbr_like
         self.nb_re_commentaitre=self.nb_reply
@@ -97,7 +97,7 @@ class Article(models.Model):
     
 class Commentaire(Timemodels):
     article_id =  models.ForeignKey(Article,on_delete=models.CASCADE, related_name="commentaires")
-    username =  models.ForeignKey(Profile,on_delete=models.CASCADE,related_name="re_Profile")
+    username =  models.ForeignKey(User,on_delete=models.CASCADE,related_name="re_user")
     contenu =  models.TextField(null=True)
 
     class Meta:
@@ -109,7 +109,7 @@ class Commentaire(Timemodels):
 class Reply(Timemodels):
     commentaire_id =  models.ForeignKey(Commentaire,on_delete=models.CASCADE, related_name="reponses")
     article_id =  models.ForeignKey(Article,on_delete=models.CASCADE, related_name="re_commentaires")
-    username =  models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="userreply")
+    username =  models.ForeignKey(User, on_delete=models.CASCADE, related_name="userreply")
     contenu =  models.TextField(null=True)
 
     class Meta:

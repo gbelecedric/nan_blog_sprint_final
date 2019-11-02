@@ -7,7 +7,7 @@ from .import views
 
 from rest_framework.routers import DefaultRouter
 
-from .apiviews import CategorieViewSet, TagViewSet, ArticleViewSet, CommentaireViewSet, ReplyViewSet, LikeViewSet, searchViewSet, VueViewSet, Visitor_Infos_userViewSet, MessageViewSet, NewsletterViewSet, ProfileViewSet, LinkViewSet, InfoViewSet, instagram_feedViewSet, FooterViewSet, BackgroundViewSet, HomeViewSet, MembreViewSet
+from .apiviews import CategorieViewSet, TagViewSet, ArticleViewSet, CommentaireViewSet, ReplyViewSet, LikeViewSet, searchViewSet, VueViewSet, Visitor_Infos_userViewSet, MessageViewSet, NewsletterViewSet,  LinkViewSet, InfoViewSet, instagram_feedViewSet, FooterViewSet, BackgroundViewSet, HomeViewSet, MembreViewSet
 
 
 router = DefaultRouter()
@@ -22,7 +22,7 @@ router.register('vue', VueViewSet, base_name='VueViewSet')
 router.register('infovisiteur', Visitor_Infos_userViewSet, base_name='infovisiteur')
 router.register('message', MessageViewSet, base_name='message')
 router.register('newsletter', NewsletterViewSet, base_name='newsletter')
-router.register('profile', ProfileViewSet, base_name='Profile')
+
 router.register('link', LinkViewSet, base_name='link')
 router.register('info', InfoViewSet, base_name='info')
 router.register('instagram', instagram_feedViewSet, base_name='instagram')
