@@ -16,6 +16,6 @@ graphene-django
 django-filter
 drf-dynamic-fields
 djangorestframework
-psycopg2
 django-admin-interface
 django-social-share
+social-auth-app-django
