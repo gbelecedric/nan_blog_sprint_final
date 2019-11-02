@@ -371,8 +371,8 @@
                         {value:335, name:'nomArticle'},
                         {value:310, name:'nomArticle'},
                         {value:234, name:'nomArticle'},
-                        {value:135, name:'nomArticle'},
-                        {value:1548, name:'nomArticle'}
+                        {value:135, name:'nomArticle',itemStyle: {color: 'gray'},},
+                        // {value: 120, itemStyle: {color: 'blue'},},
                     ],
                     itemStyle: {
                         emphasis: {
@@ -389,5 +389,6 @@
         // use configuration item and data specified to show chart
         myChart.setOption(option);
         myCourbe.setOption(optionCourbe);
+        // myChart.setTheme({color:['gray','blue']});
     </script>
 {% endblock dashbord %}
