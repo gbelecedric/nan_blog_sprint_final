@@ -51,15 +51,15 @@ class ArticleNode(DjangoObjectType):
         model = Article
         filter_fields = {
             'titre': ['exact', 'icontains', 'istartswith'],
+            'titre_slug': ['exact', 'icontains', 'istartswith'],
             'commentaires':['exact'],
             'categorie_id': ['exact',],
-            
             'categorie_id__titre': ['exact'],
         }
         order_by = OrderingFilter(
             fields=(
                 ('date_add','date_add'),
-                ('vue','vue'),
+                ('vues','vues'),
             )
         )
         interfaces = (relay.Node, )
