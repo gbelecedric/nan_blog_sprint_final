@@ -14,6 +14,10 @@ def home(request):
     return render(request, 'pages/blog/index.html',data)
 
 def detail(request , titre):
+
+    data = {
+        "titre": titre
+    }
     
     nbr_vue = Visitor_Infos_user.objects.filter(page_visited="/details/{}".format(titre)).count()
     print(nbr_vue)

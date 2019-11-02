@@ -6,7 +6,7 @@ django-tinymce4-lite==1.7.5
 django-utils2==2.5.4
 jsmin==2.2.2
 Pillow==6.2.1
-
+graphene-file-upload
 python-utils==2.3.0
 pytz==2019.3
 six==1.12.0
@@ -17,5 +17,4 @@ django-filter
 drf-dynamic-fields
 djangorestframework
 psycopg2
-django-admin-generator
 django-admin-interface
