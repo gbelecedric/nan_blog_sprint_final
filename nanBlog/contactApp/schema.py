@@ -15,6 +15,7 @@ class NewsletterNode(DjangoObjectType):
 class CreateNewsletter(graphene.Mutation):
        
     email= graphene.String()
+    
    
 
     
@@ -43,6 +44,8 @@ class  MessageNode(DjangoObjectType):
 class CreateMessage(graphene.Mutation):
        
     nom= graphene.String()
+    email= graphene.String()
+    sujet= graphene.String()
     message= graphene.String()
    
 
@@ -50,18 +53,24 @@ class CreateMessage(graphene.Mutation):
     class Arguments:
    
         nom = graphene.String()
+        email= graphene.String()
+        sujet= graphene.String()
         message= graphene.String()
 
     
-    def mutate(self, info,  nom, message,):
+    def mutate(self, info,  nom, message, email, sujet,):
         
         
-        message =  Message(nom=nom, message=message)
+        message =  Message(
+            nom=nom,
+            email=email,
+            sujet=sujet,
+            message=message)
         message.save()
 
         return CreateMessage(
         
-            message =  Message(nom=nom,message=message,)
+            message =  Message(nom=nom,message=message,email=email,sujet=sujet,)
         )
 
 

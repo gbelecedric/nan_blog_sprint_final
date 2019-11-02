@@ -48,6 +48,7 @@
 </head>
 
 <body>
+	<div id="app">
 	<!-- Start header Area -->
 	<header id="header">
 		<div class="container box_1170 main-menu">
@@ -64,6 +65,7 @@
 						<li><a href="{% url 'comptes:register' %}">Register</a></li>
 						<li><a href="{% url 'comptes:login_visit' %}">Login</a></li>
 						{% endif %}
+						<li><a href="{% url 'contact:contact' %}">Contact</a></li>
 						{% if user.is_authenticated %}
 						<li><a href="{% url 'comptes:logout_you' %}">Deconnexion</a></li>
 						{% endif %}
@@ -74,11 +76,11 @@
 	</header>
 	<!-- End header Area -->
 
-	<div id="app">
+	
 		{% block content %}
 	
 		{% endblock content %}
-	</div>
+	
     
 	<!-- start footer Area -->
 	<footer class="footer-area section-gap">
@@ -95,13 +97,12 @@
 					<div class="single-footer-widget">
 						<h6 class="footer_title">Newsletter</h6>
 						<p>Stay updated with our latest trends</p>
-						<div id="mc_embed_signup">
-							<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-							 method="get" class="subscribe_form relative">
+						<div>
+							<form class="subscribe_form relative">
 								<div class="input-group d-flex flex-row">
-									<input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '"
+									<input name="EMAIL" placeholder="Email Address" v-model="new_email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '"
 									 required="" type="email">
-									<button class="btn sub-btn"><span class="lnr lnr-arrow-right"></span></button>
+									<button v-on:click.prevent="Post_news" class="btn sub-btn"><span class="lnr lnr-arrow-right"></span></button>
 								</div>
 								<div class="mt-10 info"></div>
 							</form>
@@ -140,6 +141,7 @@
 		</div>
 	</footer>
 	<!-- End footer Area -->
+</div>
 
 	<script src="/static/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

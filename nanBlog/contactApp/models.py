@@ -13,6 +13,8 @@ class Timemodels(models.Model):
 class Message(Timemodels):
     
     nom = models.CharField(max_length=255)
+    email = models.EmailField(max_length=254)
+    sujet = models.CharField(max_length=50)
     message = models.TextField()
     
     def __str__(self):

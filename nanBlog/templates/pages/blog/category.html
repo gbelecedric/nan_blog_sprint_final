@@ -183,24 +183,22 @@
 						<h4 class="title">Post Categories</h4>
 						<ul>
 							<li v-for="cat in data_all_category"><a :href=`${base_url}`+`category/`+`${cat.node.titre}` class="justify-content-between align-items-center d-flex">
-									<p>${ cat.node.titre }</p> <span>${ cat.node.articles.totalCount }</span>
-								</a></li>
+								<p>${ cat.node.titre }</p> <span>${ cat.node.articles.totalCount }</span>
+							</a></li>
 						</ul>
 					</div>
 
 					<div class="single-widget newsletter-widget">
 						<h4 class="title">Newsletter</h4>
 						<div id="mc_embed_signup">
-							<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-							 method="get" class="">
+							<form target="_blank" novalidate="true"  class="">
 								<div class="form-group" style="width: 100%">
-									<input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '"
-									 required="" type="email">
+									<input name="EMAIL" placeholder="Email Address" v-model="new_email" required="" type="email">
 									<div style="position: absolute; left: -5000px;">
 										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
 									</div>
-
-									<button class="primary-btn text-uppercase">
+	
+									<button v-on:click.prevent="Post_news" class="primary-btn text-uppercase">
 										Subscribe Now
 										<span class="lnr lnr-arrow-right"></span>
 									</button>
@@ -225,7 +223,9 @@ var app = new Vue({
     el: '#app',
     data: {
         loader: true,
-        content:false,
+		content:false,
+		new_email:"",
+		data_email:"",
 		titre: "",
 		base_url:"",
 		titre_search: '',
@@ -239,6 +239,34 @@ var app = new Vue({
         this.getdata()
     },
     methods: {
+		Post_news: function(){
+            console.log('data posting')
+            axios.defaults.xsrfCookieName = 'csrftoken'
+			axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+            axios({
+                url: this.base_url + 'graphql',
+                method: 'post',
+                data: {
+                    query: `
+                    mutation{
+						createCreatenewsletter(email:"${ this.new_email }"){
+							email
+						}
+					}
+                    `
+                }
+            })
+            .then(response => {
+
+				result = response.data.data
+				this.data_articles = result.createCreatenewsletter.email
+				this.new_email=""
+                console.log(result)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        },
 		Search_article: function(){
             console.log('data getting')
             axios.defaults.xsrfCookieName = 'csrftoken'
