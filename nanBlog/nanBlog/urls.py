@@ -34,7 +34,7 @@ urlpatterns = [
     path('site/', include('siteApp.urls')),
     path('statistique/', include('statistiqueApp.urls')),
     path('apirest/', include('api_rest.urls')),
-    # Tinymce
+    path('oauth/', include('social_django.urls', namespace="social")),
     path('tinymce/', include('tinymce.urls')),
     path('admin/filebrowser/', site.urls),
     path('accounts/', include('allauth.urls')),
