@@ -114,16 +114,13 @@ class CommentaitreType(DjangoObjectType):
         model = Commentaire
 # ...code
 # Change the CreateLink mutation
+class ArticleInput(graphene.InputObjectType):
+    titre = graphene.String()
 class CommentaireInput(graphene.InputObjectType):
- 
+    article_id = graphene.Field(ArticleInput)
     contenu = graphene.String()
 
-    
-class ArticleType(DjangoObjectType):
-    class Meta:
-        model = Article
-class ArticleInput(graphene.InputObjectType):
-    titre_slug = graphene.String()
+
 class CreateCommentaire(graphene.Mutation):
     commentaitre = graphene.Field(CommentaitreType)
  
