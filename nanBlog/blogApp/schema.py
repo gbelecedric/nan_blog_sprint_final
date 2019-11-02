@@ -106,35 +106,35 @@ class LikeNode(DjangoObjectType):
 
 
 
-
+class ArticleType(DjangoObjectType):
+    class Meta:
+        model = Article
+class CommentaitreType(DjangoObjectType):
+    class Meta:
+        model = Commentaire
 # ...code
 # Change the CreateLink mutation
-class CreateC(graphene.Mutation):
-    id = graphene.Int()
-    url = graphene.String()
-    description = graphene.String()
-    posted_by = graphene.Field(UserType)
+class CommentaireInput(graphene.InputObjectType):
+    
+    contenu = graphene.String()
+
+    
+
+class CreateCommentaire(graphene.Mutation):
+    commentaitre = graphene.Field(CommentaitreType)
+ 
+
+
 
     class Arguments:
-        url = graphene.String()
-        description = graphene.String()
+        commentaire_data = CommentaireInput(required=True)
 
-    def mutate(self, info, url, description):
+    @staticmethod
+    def mutate(root, info, company_data):
         user = info.context.user or None
-
-        link = Link(
-            url=url,
-            description=description,
-            posted_by=user,
-        )
-        link.save()
-
-        return CreateLink(
-            id=link.id,
-            url=link.url,
-            description=link.description,
-            posted_by=link.posted_by,
-        )
+        commentaire = Commentaire.objects.create(**commentaire_data,username=user,article_id = graphene.Field(ArticleType))
+        return CreateCommentaire(commentaitre=commentaitre)
+   
 
 class Query(ObjectType):
     Categorie = relay.Node.Field(CategorieNode)
@@ -155,3 +155,8 @@ class Query(ObjectType):
     
     Reply = relay.Node.Field(ReplyNode)
     all_Reply = DjangoFilterConnectionField(ReplyNode)
+    
+class Mutation(graphene.ObjectType):
+        
+    create_CreateCommentaire = CreateCommentaire.Field()
+   
