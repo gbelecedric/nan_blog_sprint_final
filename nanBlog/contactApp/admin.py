@@ -12,6 +12,8 @@ class MessageAdmin(admin.ModelAdmin):
         'date_update',
         'status',
         'nom',
+        'email',
+        'sujet',
         'message',
     )
     list_filter = (
@@ -22,6 +24,8 @@ class MessageAdmin(admin.ModelAdmin):
         'date_add',
         'date_update',
         'status',
+        'email',
+        'sujet',
         'nom',
         'message',
     )
