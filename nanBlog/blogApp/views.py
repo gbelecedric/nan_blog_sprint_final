@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import *
@@ -19,40 +19,7 @@ def detail(request , titre):
         "titre": titre
     }
     
-    nbr_vue = Visitor_Infos_user.objects.filter(page_visited="/details/{}".format(titre)).count()
-    print(nbr_vue)
-    # lien = Link.objects.filter(status=True).order_by('-date_add')
-    # image = Background.objects.filter(status=True).order_by('-date_add')
-    maxim = Article.objects.filter(status=True).order_by('-nb_like') 
- 
-    
-
-    archive = Categorie.objects.filter(status=True).order_by('-date_add') 
-    alltag = Tag.objects.filter(status=True)
-    article = Article.objects.get(titre_slug=titre)
-    categorie = Categorie.objects.filter(status=True).order_by('-date_add')
-    tag = article.tag_name.all()
-    comment = Commentaire.objects.filter(article_id = article).order_by('-date_add')
-    comment7 = Commentaire.objects.filter(article_id = article).order_by('-date_add')[5::]
-   
-
-    data={
-        "nbr_vue":nbr_vue,
-    
-        
-    
-        'verif':len(comment7),
-        # 'lien':lien,
-        # 'image':image,
-        'alltag':alltag,
-        'archive':archive,
-        'tag':tag,
-        'categorie':categorie,
-        'comment':comment,
-        'article':article,
-        'maxim':maxim,
-    }
-    return render(request, 'pages/blog/blog-detail.html',data)
+    return render(request, 'pages/blog/single.html',data)
 
 def categorie(request, titre):
     
@@ -65,21 +32,21 @@ def dashbord(request):
     user = request.user
     print(user.username)
     print('***************')
-    # userpost = Article.objects.filter(auteur=user)
-    # b = Article.objects.filter(auteur=user, status=True)
-    # c = Article.objects.filter(auteur=user, status=False)
-    # bb = b.count()
-    # a = userpost.count()
-    # cc = c.count()
-    # print('++++++++++++++++++',a)
-    # print('++++++++++++++++++',bb,cc)
+    userpost = Article.objects.filter(auteur=user)
+    b = Article.objects.filter(auteur=user, status=True)
+    c = Article.objects.filter(auteur=user, status=False)
+    bb = b.count()
+    a = userpost.count()
+    cc = c.count()
+    print('++++++++++++++++++',a)
+    print('++++++++++++++++++',bb,cc)
     
-    # data={
-    #     'userpost': userpost,
-    #     'a': a,
-    #     'bb': bb,
-    #     'cc': cc,
-    # }
+    data={
+        'userpost': userpost,
+        'a': a,
+        'bb': bb,
+        'cc': cc,
+    }
     return render(request, 'pages/dashbord/dashbord.html', data)
 
 def dashpost(request):
@@ -88,6 +55,7 @@ def dashpost(request):
     userarticle = User.objects.all()
     #print(userarticle.ctegorieuser.articles.all)
     userpost = Article.objects.filter(auteur=user)
+    #article = get_object_or_404(Article, categorie=cat, id=id)
     
 
     data={
@@ -99,12 +67,13 @@ def dashpost(request):
     return render(request, 'pages/dashbord/posts.html', data)
 
 def dashdetail(request):
-    
-        
-    data = {
-       
-    }
-    return render(request, 'pages/dashbord/dashdetail.html',data)
+    #article = get_object_or_404(Article, pk=id)
+    # article = Article.objects.filter(auteur=autor)[:1].get()
+
+    # data = {
+    #     'article': article,
+    # }
+    return render(request, 'pages/dashbord/dashdetail.html')
 
 def error(request):
     
@@ -115,5 +84,38 @@ def ajout(request):
     
     data={}
     return render(request, 'pages/dashbord/ajout.html',data)
+
+def postsAtt(request):
+    user = request.user
+    userpost = Article.objects.filter(auteur=user)
+    c = Article.objects.filter(auteur=user, status=False)
+    a = userpost.count()
+    cc = c.count()
+    print('++++++++++++++++++',a)
+    
+    data={
+        'userpost': userpost,
+        'a': a,
+        'cc': cc,
+        'c': c,
+    }
+    return render(request, 'pages/dashbord/postsAtt.html',data)
+
+def postsV(request):
+    user = request.user
+    userpost = Article.objects.filter(auteur=user)
+    b = Article.objects.filter(auteur=user, status=True)
+    bb = b.count()
+    a = userpost.count()
+    print('++++++++++++++++++',a)
+    
+    data={
+        'userpost': userpost,
+        'a': a,
+        'bb': bb,
+        'b': b,
+    }
+    
+    return render(request, 'pages/dashbord/postsV.html',data)
 
 

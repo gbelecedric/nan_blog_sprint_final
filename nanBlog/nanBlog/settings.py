@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'tinymce',
     'filebrowser',
     'django_admin_generator',
+    'django_social_share',
 
     'rest_framework',
     'api.apps.ApiConfig',
