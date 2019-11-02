@@ -90,6 +90,7 @@ class ReplyNode(DjangoObjectType):
         }
         interfaces = (relay.Node, )
         connection_class = ExtendedConnection
+        
 class LikeNode(DjangoObjectType):
     class Meta:
         model = Like
