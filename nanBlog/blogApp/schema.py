@@ -115,24 +115,31 @@ class CommentaitreType(DjangoObjectType):
 # ...code
 # Change the CreateLink mutation
 class CommentaireInput(graphene.InputObjectType):
-    
+ 
     contenu = graphene.String()
 
     
-
+class ArticleType(DjangoObjectType):
+    class Meta:
+        model = Article
+class ArticleInput(graphene.InputObjectType):
+    titre_slug = graphene.String()
 class CreateCommentaire(graphene.Mutation):
     commentaitre = graphene.Field(CommentaitreType)
  
+
+  
 
 
 
     class Arguments:
         commentaire_data = CommentaireInput(required=True)
+      
 
     @staticmethod
-    def mutate(root, info, company_data):
+    def mutate(root, info, commentaire_data , article_id    ):
         user = info.context.user or None
-        commentaire = Commentaire.objects.create(**commentaire_data,username=user,article_id = graphene.Field(ArticleType))
+        commentaire = Commentaire.objects.create(**commentaire_data,username=user )
         return CreateCommentaire(commentaitre=commentaitre)
    
 
