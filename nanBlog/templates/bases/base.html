@@ -29,6 +29,22 @@
 	<link rel="stylesheet" href="/static/css/animate.min.css">
 	<link rel="stylesheet" href="/static/css/owl.carousel.css">
     <link rel="stylesheet" href="/static/css/main.css">
+
+
+	
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+
 </head>
 
 <body>
@@ -37,11 +53,20 @@
 		<div class="container box_1170 main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
 				<div id="logo">
-					<a href="index.html"><img src="/static/img/logo.png" alt="" title="" /></a>
+					<a href="{% url 'blog:home' %}"><img src="/static/img/logo.png" alt="" title="" /></a>
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li class="menu-active"><a href="{% url 'blog:home' %}">Home</a></li>
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'blog:dashbord' %}">Dashborad</a></li>
+						{% else %}
+						<li><a href="{% url 'comptes:register' %}">Register</a></li>
+						<li><a href="{% url 'comptes:login_visit' %}">Login</a></li>
+						{% endif %}
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'comptes:logout_you' %}">Deconnexion</a></li>
+						{% endif %}
 					</ul>
 				</nav>
 			</div>
@@ -111,11 +136,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row footer-bottom d-flex justify-content-between align-items-center">
-				<p class="col-lg-12 footer-text text-center"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-			</div>
+			
 		</div>
 	</footer>
 	<!-- End footer Area -->
@@ -144,7 +165,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- Fin VueJs et Axios -->
 
 	{% block vue %}
-    {% endblock vue %}
+	{% endblock vue %}
+	
+	
+	{% block vueregist %}
+		
+	{% endblock vueregist %}
+		
 	
 </body>
 

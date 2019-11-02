@@ -97,7 +97,8 @@ class Article(models.Model):
     
 class Commentaire(Timemodels):
     article_id =  models.ForeignKey(Article,on_delete=models.CASCADE, related_name="commentaires")
-    username =  models.ForeignKey(User,on_delete=models.CASCADE,related_name="re_user")
+
+    username =  models.ForeignKey(User,on_delete=models.CASCADE,related_name="commentaires")
     contenu =  models.TextField(null=True)
 
     class Meta:
