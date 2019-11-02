@@ -12,11 +12,11 @@ class Timemodels(models.Model):
 
 class Message(Timemodels):
     
-    nom =  models.ForeignKey(User,on_delete=models.CASCADE)
+    nom = models.CharField(max_length=255)
     message = models.TextField()
     
     def __str__(self):
-        return self.nom.username
+        return self.nom
     
     class Meta:
       

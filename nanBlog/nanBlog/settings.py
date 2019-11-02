@@ -180,13 +180,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =1
-# ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-# ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
-# ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400 # 1 day in seconds
-# ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
-# LOGIN_REDIRECT_URL = 'Home' 
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =1
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400 # 1 day in seconds
+ACCOUNT_LOGOUT_REDIRECT_URL ='blog:home'
+LOGIN_REDIRECT_URL = 'blog:home' 
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
@@ -216,7 +216,9 @@ TINYMCE_DEFAULT_CONFIG = {
     'menubar': True,
     'statusbar': True,
 }
-
+ACCOUNT_FORMS = {
+'signup': 'YourProject.forms.CustomSignupForm',
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

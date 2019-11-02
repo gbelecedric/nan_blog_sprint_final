@@ -1,6 +1,3 @@
-from django.contrib import admin
-
-# Register your models here.
 # vim: set fileencoding=utf-8 :
 from django.contrib import admin
 
@@ -10,6 +7,7 @@ from . import models
 class MessageAdmin(admin.ModelAdmin):
 
     list_display = (
+        'id',
         'date_add',
         'date_update',
         'status',
@@ -17,7 +15,10 @@ class MessageAdmin(admin.ModelAdmin):
         'message',
     )
     list_filter = (
-        'nom',
+        'date_add',
+        'date_update',
+        'status',
+        'id',
         'date_add',
         'date_update',
         'status',
@@ -28,8 +29,12 @@ class MessageAdmin(admin.ModelAdmin):
 
 class NewsletterAdmin(admin.ModelAdmin):
 
-    list_display = ('date_add', 'date_update', 'status', 'email')
+    list_display = ('id', 'date_add', 'date_update', 'status', 'email')
     list_filter = (
+        'date_add',
+        'date_update',
+        'status',
+        'id',
         'date_add',
         'date_update',
         'status',
