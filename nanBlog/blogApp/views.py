@@ -85,4 +85,37 @@ def ajout(request):
     data={}
     return render(request, 'pages/dashbord/ajout.html',data)
 
+def postsAtt(request):
+    user = request.user
+    userpost = Article.objects.filter(auteur=user)
+    c = Article.objects.filter(auteur=user, status=False)
+    a = userpost.count()
+    cc = c.count()
+    print('++++++++++++++++++',a)
+    
+    data={
+        'userpost': userpost,
+        'a': a,
+        'cc': cc,
+        'c': c,
+    }
+    return render(request, 'pages/dashbord/postsAtt.html',data)
+
+def postsV(request):
+    user = request.user
+    userpost = Article.objects.filter(auteur=user)
+    b = Article.objects.filter(auteur=user, status=True)
+    bb = b.count()
+    a = userpost.count()
+    print('++++++++++++++++++',a)
+    
+    data={
+        'userpost': userpost,
+        'a': a,
+        'bb': bb,
+        'b': b,
+    }
+    
+    return render(request, 'pages/dashbord/postsV.html',data)
+
 

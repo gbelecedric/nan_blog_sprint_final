@@ -14,5 +14,8 @@ urlpatterns = [
     path('error', views.error, name='error'),
     path('ajout', views.ajout, name='ajout'),
 
+    path('postsAtt', views.postsAtt, name='postsAtt'),
+    path('postsV', views.postsV, name='postsV'),
+
 ]
   
