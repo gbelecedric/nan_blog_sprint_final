@@ -5,7 +5,7 @@ from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 from django_filters import FilterSet, OrderingFilter
 from django.contrib.auth.models import User
-
+from comptesApp.schema import UserType
 
 from .models import *
 
@@ -104,6 +104,37 @@ class LikeNode(DjangoObjectType):
         interfaces = (relay.Node, )
         connection_class = ExtendedConnection
 
+
+
+
+# ...code
+# Change the CreateLink mutation
+class CreateC(graphene.Mutation):
+    id = graphene.Int()
+    url = graphene.String()
+    description = graphene.String()
+    posted_by = graphene.Field(UserType)
+
+    class Arguments:
+        url = graphene.String()
+        description = graphene.String()
+
+    def mutate(self, info, url, description):
+        user = info.context.user or None
+
+        link = Link(
+            url=url,
+            description=description,
+            posted_by=user,
+        )
+        link.save()
+
+        return CreateLink(
+            id=link.id,
+            url=link.url,
+            description=link.description,
+            posted_by=link.posted_by,
+        )
 
 class Query(ObjectType):
     Categorie = relay.Node.Field(CategorieNode)

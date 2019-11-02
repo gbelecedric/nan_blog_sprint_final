@@ -53,15 +53,15 @@ class CreateMessage(graphene.Mutation):
         message= graphene.String()
 
     
-    def mutate(self, info, email):
+    def mutate(self, info,  nom, message,):
         
         
-        message =  Message(nom=nom,message=message,)
+        message =  Message(nom=nom, message=message)
         message.save()
 
         return CreateMessage(
         
-            email =  Message(email=email)
+            message =  Message(nom=nom,message=message,)
         )
 
 
