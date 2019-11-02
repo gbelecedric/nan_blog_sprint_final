@@ -43,18 +43,19 @@ class Article(models.Model):
     titre =  models.CharField(max_length=255)
     titre_slug = models.SlugField(max_length=255,editable=False,default=uuid.uuid4, null=True)
     description = models.TextField()
+    vues = models.PositiveIntegerField(default=0)
     categorie_id =  models.ForeignKey(Categorie,on_delete=models.CASCADE, related_name="articles")
     contenu =  HTMLField('article_description', null=True)
     photo = models.ImageField(upload_to ='article')
     tag_name = models.ManyToManyField(Tag, related_name="tag_article")
-    auteur =  models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    auteur =  models.ForeignKey(User,on_delete=models.CASCADE, null=True, related_name="articles")
     nb_com = models.PositiveIntegerField(editable=False,)
     nb_like = models.PositiveIntegerField(editable=False,)
     nb_re_commentaitre = models.PositiveIntegerField(editable=False,)
     date_add =  models.DateTimeField(auto_now_add=True)
     date_update =  models.DateTimeField(auto_now=True)
     status =  models.BooleanField(default=False)
-  
+
     @property
     def nbr_like(self):
         n = self.likes.all().count()
@@ -82,6 +83,7 @@ class Article(models.Model):
         self.titre_slug ='@'+ slugify(self.titre + str(u3) + str(self.pk)  + self.auteur.username )
         self.nb_com = self.nbr_comment
         self.nb_like=self.nbr_like
+        self.vues = self.nb_vues
         self.nb_re_commentaitre=self.nb_reply
 
         super(Article, self).save(*args, **kwargs)
