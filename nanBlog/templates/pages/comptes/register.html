@@ -1,105 +1,78 @@
-{% extends 'bases/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% load socialaccount %}
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
 
-{% block content %}
+    <!-- Title Page-->
+    <title>Nan Register Membre</title>
 
-<!-- Start banner Area -->
-<section class="banner-area relative">
-    <div class="overlay overlay-bg"></div>
-    <div class="container box_1170">
-        <div class="row d-flex align-items-center justify-content-center">
-            <div class="about-content col-lg-12">
-                    <h1 class="text-white">
-                        Visitor Register
-                        </h1>
-                        <p class="text-white link-nav"><a href="">Home </a>
-                            <span class="lnr lnr-arrow-right"></span> <a href="">
-                                Register</a></p>
-                
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End banner Area -->
-<!-- Start contact-page Area -->
+    <!-- Icons font CSS-->
+    <link href="/static/vendor3/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/static/vendor3/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-<!-- main -->
-<div class="w3layouts-main"> 
-<div class="bg-layer">
-<section class="contact-page-area section-gap bg-layer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2"></div>
-                <div class="col-lg-8" id="appfat">
-                    <div v-if='isSuccess' class="alert alert-success col-lg-6" role="alert">
-                        <button type="button" class="close" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        ${messageRes}
-                    </div>
-                    <div v-if='error' class="alert alert-danger col-lg-6" role="alert">
-                        <button type="button" class="close" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        ${messageRes}
-                    </div>
-                    <form class="form-area" v-on:submit="onSubmit" enctype="multipart/form-data" class="contact-form text-right"> {% csrf_token %}
-                        <div class="row">
-                            <div class="col-lg-6 form-group">
-                                <input type="text" name="first_name" v-model.trim="form.first_name" placeholder="Nom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your First Name'"
-                                class="common-input mb-20 form-control">
+   
+    <link href="/static/vendor3/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
-                                <input type="text" name="last_name" v-model.trim="form.last_name" placeholder="Prenom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Las Name'"
-                                class="common-input mb-20 form-control" >
+    <!-- Main CSS-->
+    <link href="/static/css3/main.css" rel="stylesheet" media="all">
+</head>
 
-                                <input name="username" v-model.trim="form.username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Username'"
-                                class="common-input mb-20 form-control" type="text">
-                                <!-- pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" -->
-                                <input type="text" name="email" v-model.trim="form.email" placeholder="Email Address" 
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control"
-                                >
-
-                                <input type="file" name="file" ref="file" v-on:change="handleFileUpload" placeholder="" class="common-input mb-20 form-control">
-
-                                <input type="password" name="password" v-model.trim="form.password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your password'"
-                                class="common-input mb-20 form-control" >
-
-                                <input type="password" name="password2" v-model.trim="form.password2" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm password'"
-                                class="common-input mb-20 form-control" >
-
-                            </div>
+<body>
+    <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
         
-                            <div class="col-lg-12 d-flex justify-content-between">
-                                <!-- <div class="alert-msg" style="text-align: left;"></div> -->
-                                <button class="genric-btn primary circle text-uppercase">Register</button>
-                            </div>
+        <div class="wrapper wrapper--w780">
+            <div class="card card-3">
+                <div class="card-heading" >
+                        <h2 class="title" style="text-align: center;margin-bottom: 50% ">Registration Membre</h2>
+
+                </div>
+                <div class="card-body">
+               
+                    <form method="POST">
+                        <div class="input-group">
+                            <input class="input--style-3" type="text" placeholder="Name" name="name">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-3 js-datepicker" type="text" placeholder="Birthdate" name="birthday">
+                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-3" type="email" placeholder="Email" name="email">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-3" type="text" placeholder="Phone" name="phone">
+                        </div>
+                        <div class="p-t-10">
+                            <button class="btn btn--pill btn--green" type="submit">Submit</button>
                         </div>
                     </form>
+                    
                 </div>
-            <div class="col-lg-2"></div>
-        </div>
-        <div class="">
-            <div class="f_social">
-                <ul>
-                    <li>or login using : </li>
-                    <div class="row m-2">
-                            
-                        <li><a href="{% provider_login_url "facebook" method="oauth2" %}" class="facebook"><span class="fa fa-facebook mr-3"></span></a></li>
-                        <li><a href="{% provider_login_url "github" %}" class="github"><span class="fa fa-github mr-3"></span></a></li>
-                        <li><a href="{% provider_login_url "google" %}" class="google"><span class="fa fa-google-plus mr-3"></span></a></li>
-                </div>
-                </ul>
+                
             </div>
+            
         </div>
     </div>
-</section>
-</div>
- </div>
 
+    <!-- Jquery JS-->
+    <script src="/static/vendor3/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="/static/vendor3/select2/select2.min.js"></script>
+    <script src="/static/vendor3/datepicker/moment.min.js"></script>
+    <script src="/static/vendor3/datepicker/daterangepicker.js"></script>
 
-{% endblock content %}
+    <!-- Main JS-->
+    <script src="/static/js3/global.js"></script>
 
-{% block vueregist %}
-    <script src="/static/vuejs/indexfat.js"></script>
-{% endblock vueregist %}
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

@@ -37,6 +37,7 @@ urlpatterns = [
     # Tinymce
     path('tinymce/', include('tinymce.urls')),
     path('admin/filebrowser/', site.urls),
+    path('accounts/', include('allauth.urls')),
     # url(r'^accounts/', include('allauth.urls')),
     # path('api/', include('api.urls')),
     # path("graphql", GraphQLView.as_view(graphiql=True, schema=schema)),
