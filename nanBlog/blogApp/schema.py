@@ -3,6 +3,7 @@ import graphene
 from graphene import relay, ObjectType, Connection, Node, Int
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
+from django_filters import FilterSet, OrderingFilter
 
 
 from .models import *
@@ -90,7 +91,7 @@ class ReplyNode(DjangoObjectType):
         }
         interfaces = (relay.Node, )
         connection_class = ExtendedConnection
-        
+
 class LikeNode(DjangoObjectType):
     class Meta:
         model = Like
