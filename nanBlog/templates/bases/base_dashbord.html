@@ -35,7 +35,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="#" class="site_title"><i class="fa fa-paw"></i> <span>Admin Membre</span></a>
+                    <a href="{% url 'blog:dashbord' %}" class="site_title"><i class="fa fa-paw"></i> <span>Admin Membre</span></a>
                 </div>
         
                 <div class="clearfix"></div>
@@ -311,6 +311,16 @@
 
     <!-- Custom Theme Scripts -->
     <script src="/static/dashbord/build/js/custom.min.js"></script>
+
+    	<!-- VueJs et Axios -->
+	<script src="/static/vuejs/vue.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --> <!-- C'est le cdn de VueJs mais j'ai opte pour vueJs en local -->
+	
+	<script src="/static/vuejs/axios-min.js"></script>
+    <!-- Fin VueJs et Axios -->
+    
+    {% block vue %}
+    {% endblock vue %}
 	
   </body>
 </html>
