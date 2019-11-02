@@ -57,37 +57,37 @@ INSTALLED_APPS = [
     'api_rest.apps.ApiRestConfig',
 
 
-    # allauth
+   
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
-    # provider  
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.github',
-
+    # # provider  
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.github',
+'social_django',
 ]
-ACCOUNT_DEFAULT_HTTP_PROTOCOL ="https"
+# ACCOUNT_DEFAULT_HTTP_PROTOCOL ="https"
 
-SOCIALACCOUNT_PROVIDERS = {
-    'linkedin': {
-        'SCOPE': [
-            'r_basicprofile',
-            'r_emailaddress'
-        ],
-        'PROFILE_FIELDS': [
-            'id',
-            'first-name',
-            'last-name',
-            'email-address',
-            'picture-url',
-            'public-profile-url',
-        ]
-    }
-}
+# SOCIALACCOUNT_PROVIDERS = {
+#     'linkedin': {
+#         'SCOPE': [
+#             'r_basicprofile',
+#             'r_emailaddress'
+#         ],
+#         'PROFILE_FIELDS': [
+#             'id',
+#             'first-name',
+#             'last-name',
+#             'email-address',
+#             'picture-url',
+#             'public-profile-url',
+#         ]
+#     }
+# }
 
-SITE_ID = 1
+# SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -96,8 +96,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'social_django.middleware.SocialAuthExceptionMiddleware'
 ]
-
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'social_core.backends.instagram.InstagramOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
 ROOT_URLCONF = 'nanBlog.urls'
 
 TEMPLATES = [
@@ -111,20 +118,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',
+                'social_django.context_processors.backends', # add this
+                'social_django.context_processors.login_redirect', # add this
             
             ],
         },
     },
 ]
 
-AUTHENTICATION_BACKENDS = (
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
 
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
 WSGI_APPLICATION = 'nanBlog.wsgi.application'
 
 
@@ -166,8 +168,23 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+LOGIN_URL = 'comptes:loginvisit'
+LOGIN_REDIRECT_URL = 'blog:dashbord'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'comptes:loginvisit'
 
-
+SOCIAL_AUTH_FACEBOOK_KEY = '1163710850685157'        # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'a69ca4a8f6164a682a515128496a83d2' # App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link'] # add this
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {       # add this
+  'fields': 'id, name, email, picture.type(large), link'
+}
+SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                 # add this
+    ('name', 'name'),
+    ('email', 'email'),
+    ('picture', 'picture'),
+    ('link', 'profile_url'),
+]
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -181,13 +198,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =1
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400 # 1 day in seconds
-ACCOUNT_LOGOUT_REDIRECT_URL ='blog:home'
-LOGIN_REDIRECT_URL = 'blog:home' 
+# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =1
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+# ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400 # 1 day in seconds
+# ACCOUNT_LOGOUT_REDIRECT_URL ='blog:home'
+# LOGIN_REDIRECT_URL = 'blog:home' 
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
