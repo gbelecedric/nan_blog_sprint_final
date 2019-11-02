@@ -10,7 +10,7 @@ from configurationApp.models import *
 from statistiqueApp.models import *
 from .models import *
 
-from .serializers import CategorieSerializer, TagSerializer, ArticleSerializer, CommentaireSerializer, ReplySerializer, LikeSerializer, searchSerializer, VueSerializer, Visitor_Infos_userSerializer, MessageSerializer, NewsletterSerializer, ProfileSerializer, LinkSerializer, InfoSerializer, instagram_feedSerializer, FooterSerializer, BackgroundSerializer, HomeSerializer, MembreSerializer
+from .serializers import CategorieSerializer, TagSerializer, ArticleSerializer, CommentaireSerializer, ReplySerializer, LikeSerializer, searchSerializer, VueSerializer, Visitor_Infos_userSerializer, MessageSerializer, NewsletterSerializer,  LinkSerializer, InfoSerializer, instagram_feedSerializer, FooterSerializer, BackgroundSerializer, HomeSerializer, MembreSerializer
 
 
 class DynamicSearchFilter(filters.SearchFilter):
@@ -61,9 +61,6 @@ class NewsletterViewSet(viewsets.ModelViewSet):
     queryset = Newsletter.objects.all()
     serializer_class = NewsletterSerializer
 
-class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
 
 class LinkViewSet(viewsets.ModelViewSet):
     queryset = Link.objects.all()

@@ -3,6 +3,8 @@ import graphene
 from graphene import relay, ObjectType, Connection, Node, Int
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
+from django_filters import FilterSet, OrderingFilter
+from django.contrib.auth.models import User
 
 
 from .models import *
@@ -49,13 +51,17 @@ class ArticleNode(DjangoObjectType):
         model = Article
         filter_fields = {
             'titre': ['exact', 'icontains', 'istartswith'],
+            'titre_slug': ['exact', 'icontains', 'istartswith'],
             'commentaires':['exact'],
             'categorie_id': ['exact',],
-            
             'categorie_id__titre': ['exact'],
-        
-            
         }
+        order_by = OrderingFilter(
+            fields=(
+                ('date_add','date_add'),
+                ('vues','vues'),
+            )
+        )
         interfaces = (relay.Node, )
         connection_class = ExtendedConnection
 
@@ -90,6 +96,7 @@ class ReplyNode(DjangoObjectType):
         }
         interfaces = (relay.Node, )
         connection_class = ExtendedConnection
+
 class LikeNode(DjangoObjectType):
     class Meta:
         model = Like
