@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import *
@@ -65,21 +65,21 @@ def dashbord(request):
     user = request.user
     print(user.username)
     print('***************')
-    # userpost = Article.objects.filter(auteur=user)
-    # b = Article.objects.filter(auteur=user, status=True)
-    # c = Article.objects.filter(auteur=user, status=False)
-    # bb = b.count()
-    # a = userpost.count()
-    # cc = c.count()
-    # print('++++++++++++++++++',a)
-    # print('++++++++++++++++++',bb,cc)
+    userpost = Article.objects.filter(auteur=user)
+    b = Article.objects.filter(auteur=user, status=True)
+    c = Article.objects.filter(auteur=user, status=False)
+    bb = b.count()
+    a = userpost.count()
+    cc = c.count()
+    print('++++++++++++++++++',a)
+    print('++++++++++++++++++',bb,cc)
     
-    # data={
-    #     'userpost': userpost,
-    #     'a': a,
-    #     'bb': bb,
-    #     'cc': cc,
-    # }
+    data={
+        'userpost': userpost,
+        'a': a,
+        'bb': bb,
+        'cc': cc,
+    }
     return render(request, 'pages/dashbord/dashbord.html', data)
 
 def dashpost(request):
@@ -88,6 +88,7 @@ def dashpost(request):
     userarticle = User.objects.all()
     #print(userarticle.ctegorieuser.articles.all)
     userpost = Article.objects.filter(auteur=user)
+    #article = get_object_or_404(Article, categorie=cat, id=id)
     
 
     data={
@@ -99,12 +100,13 @@ def dashpost(request):
     return render(request, 'pages/dashbord/posts.html', data)
 
 def dashdetail(request):
-    
-        
-    data = {
-       
-    }
-    return render(request, 'pages/dashbord/dashdetail.html',data)
+    #article = get_object_or_404(Article, pk=id)
+    # article = Article.objects.filter(auteur=autor)[:1].get()
+
+    # data = {
+    #     'article': article,
+    # }
+    return render(request, 'pages/dashbord/dashdetail.html')
 
 def error(request):
     
