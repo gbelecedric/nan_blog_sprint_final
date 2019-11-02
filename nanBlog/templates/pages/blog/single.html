@@ -379,3 +379,138 @@
         </section>
         <!-- Blog Area -->
 {% endblock content %}
+
+{% block vue %}
+<script>
+var app = new Vue({
+    el: '#app',
+    data: {
+        loader: true,
+		content:false,
+		searching:false,
+		search_result:[],
+        base_url:"",
+		titre_search: '',
+		all_category: [],
+        data_all_category:[],
+        data_all_articles:[],
+		data_articles:[],
+		message:false,
+    },
+    delimiters: ["${","}"],
+    mounted(){
+		this.base_url = window.location.protocol + '//' + window.location.host + '/'
+		this.getdata();
+    },
+    methods: {
+		Search_article: function(){
+            console.log('data getting')
+            axios.defaults.xsrfCookieName = 'csrftoken'
+			axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+			this.content = false
+            axios({
+                url: this.base_url + 'graphql',
+                method: 'post',
+                data: {
+                    query: `
+                    query{
+						search:allArticles(titre_Icontains: "${ this.titre_search }") {
+							edges {
+								node {
+									titre
+									titreSlug
+									photo
+									categorieId {
+									titre
+									id
+									}
+									dateAdd
+									description
+									commentaires {
+									totalCount
+									}
+									likes {
+									totalCount
+									}
+								}
+								}
+						}
+					}
+                    `
+                }
+            })
+            .then(response => {
+
+				result = response.data.data
+				this.data_all_articles = result.search.edges
+				this.content=true
+                console.log(result)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        },
+        getdata: function(){
+            console.log('data getting')
+            axios.defaults.xsrfCookieName = 'csrftoken'
+            axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+            axios({
+                url: this.base_url + 'graphql',
+                method: 'post',
+                data: {
+                    query: `
+                    query{
+							allArticles {
+								edges {
+								node {
+									titre
+									titreSlug
+									photo
+									categorieId {
+									titre
+									id
+									}
+									dateAdd
+									description
+									commentaires{
+									totalCount
+									}
+									likes{
+									totalCount
+									}
+								}
+								}
+							},
+							allCategories{
+								edges{
+								node{
+									id
+									titre
+									image
+									articles {
+									totalCount
+									}
+								}
+								}
+							}
+						}
+                    `
+                }
+            })
+            .then(response => {
+                result = response.data.data
+                this.data_all_category = result.allCategories.edges
+				this.data_all_articles = result.allArticles.edges
+				this.content=true
+                console.log(this.data_all_category)
+				console.log(this.data_all_articles)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        },
+    },
+	
+})
+</script>
+{% endblock vue %}
