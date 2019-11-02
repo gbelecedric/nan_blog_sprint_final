@@ -60,12 +60,13 @@
 						<li class="menu-active"><a href="{% url 'blog:home' %}">Home</a></li>
 						{% if user.is_authenticated %}
 						<li><a href="{% url 'blog:dashbord' %}">Dashborad</a></li>
-						{% endif %}
-
+						{% else %}
 						<li><a href="{% url 'comptes:register' %}">Register</a></li>
 						<li><a href="{% url 'comptes:login_visit' %}">Login</a></li>
+						{% endif %}
+						{% if user.is_authenticated %}
 						<li><a href="{% url 'comptes:logout_you' %}">Deconnexion</a></li>
-
+						{% endif %}
 					</ul>
 				</nav>
 			</div>
